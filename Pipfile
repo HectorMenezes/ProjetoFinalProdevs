@@ -1,0 +1,20 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+fastapi = "*"
+python-decouple = "*"
+alembic = "*"
+uvicorn = "*"
+hypothesis = "*"
+pydantic = {extras = ["email"], version = "*"}
+psycopg2-binary = "*"
+aiohttp = "*"
+requests = "*"
+
+[requires]
+python_version = "3.8"

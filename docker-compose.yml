@@ -1,0 +1,30 @@
+version: "3"
+networks:
+  default:
+    external:
+      name: "prodevs"
+services:
+  api:
+    container_name: finalprojectprodevs-api
+    build:
+      dockerfile: Dockerfile
+      context: .
+    volumes:
+      - .:/APP
+    ports:
+      - "5000:5000"
+    environment:
+      DATABASE_DSN: "postgresql://captalys_user:123@db:5432/captalys"
+    links:
+      - db
+    depends_on:
+      - db
+  db:
+    container_name: finalprojectprodevs-db
+    image: postgres:11.8-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: captalys_user
+      POSTGRES_PASSWORD: 123
+      POSTGRES_DB: captalys
