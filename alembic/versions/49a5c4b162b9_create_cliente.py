@@ -21,7 +21,7 @@ def upgrade():
                     sa.Column("nome", sa.String(100), nullable=False),
                     sa.Column("email", sa.String(200), nullable=False),
                     sa.Column("data_nasc", sa.DateTime, nullable=False),
-                    sa.Column("telefone", sa.String(13)), nullable=False)
+                    sa.Column("telefone", sa.String(13), nullable=False))
 
 
 def downgrade():
