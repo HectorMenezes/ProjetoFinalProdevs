@@ -9,7 +9,7 @@ router_produto = APIRouter()
 @router_produto.get('/produtos')
 async def get_todos_produtos():
     headers = {
-        'x-api-key': 'x0lrm4xjPLWiXor2K4Qy1Dhes391B4n9BGqRpyN7'
+        'x-api-key': external_api_key
     }
     async with aiohttp.ClientSession(headers=headers) as session:
         async with session.get(external_api_url + 'produtos') as response:
@@ -20,4 +20,4 @@ async def get_todos_produtos():
             html = await response.json()
 
             print("Body:", html)
-            return dict(chave=external_api_key, reposta=html)
+            return dict(reposta=html)

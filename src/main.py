@@ -15,6 +15,7 @@ APP.include_router(router=router_produto, tags=['Produtos'])
 @APP.on_event('startup')
 def start_up():
     try:
-        run_migration(MigrationType.UPGRADE, 'head')
+        ...
+        # run_migration(MigrationType.UPGRADE, 'head')
     except Exception as error:
         print(error)

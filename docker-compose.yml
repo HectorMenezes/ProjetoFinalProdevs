@@ -14,7 +14,8 @@ services:
     ports:
       - "5000:5000"
     environment:
-      DATABASE_DSN: "postgresql://captalys_user:123@db:5432/captalys"
+      DATABASE_DSN: $DATABASE_DSN
+      EXTERNAL_KEY: $EXTERNAL_KEY
     links:
       - db
     depends_on:
