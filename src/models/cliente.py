@@ -17,4 +17,6 @@ class Cliente(BaseModel, BasicCrud):
 
     itens = relationship('Item', back_populates="cliente")
 
-
+    @classmethod
+    def get_by_cpf(cls, database_session: SESSION, cpf: str) -> Optional['Cliente']:
+        return database_session.query(cls).filter_by(cpf=cpf).first()

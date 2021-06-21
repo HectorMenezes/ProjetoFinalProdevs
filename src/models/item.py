@@ -1,11 +1,8 @@
-from typing import List, Optional
-
-from sqlalchemy import Column, String, Integer, \
-    DateTime, Boolean, ForeignKey
+from sqlalchemy import Column, String, Integer, ForeignKey
 from sqlalchemy.orm import relationship
 
 from src.models.base import BasicCrud
-from src.services.database import BaseModel, SESSION
+from src.services.database import BaseModel
 
 
 class Item(BaseModel, BasicCrud):

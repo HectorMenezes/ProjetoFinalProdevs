@@ -1,21 +1,20 @@
 from datetime import datetime
-from numbers import Integral as inteiro
 
-from pydantic import BaseModel, Field, constr, conint, EmailStr, validator
+from pydantic import BaseModel, Field, constr, EmailStr, validator
 
 
-class ClienteInput(BaseModel):
+class ClienteSchema(BaseModel):
     cpf: constr(max_length=11, min_length=11)
     nome: constr(max_length=100)
     email: EmailStr = Field(...)
     data_nasc: datetime = Field(...)
     telefone: constr(max_length=13, min_length=13)
 
+    # 32694352740
+    # 11087773768
+    # 41597255971
     @validator('cpf')
     def cpf_valido(cls, v):
-        # 32694352740
-        # 11087773768
-        # 41597255971
         digitos = []
         try:
             for i in v:
@@ -42,3 +41,14 @@ class ClienteInput(BaseModel):
             raise ValueError('CPF inválido2')
         return v
 
+
+class ClienteUpdate(BaseModel):
+    nome: constr(max_length=100)
+    email: EmailStr = Field(...)
+    data_nasc: datetime = Field(...)
+    telefone: constr(max_length=13, min_length=13)
+
+
+class ClienteSchemaResponse(BaseModel):
+    status: str = Field(...)
+    cliente: ClienteSchema = Field(...)
