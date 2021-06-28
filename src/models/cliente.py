@@ -15,7 +15,7 @@ class Cliente(BaseModel, BasicCrud):
     data_nasc = Column(DateTime, nullable=True)
     telefone = Column(String(13), nullable=False)
 
-    itens = relationship('Item', back_populates="cliente")
+    operacoes = relationship('Operacao', back_populates="cliente")
 
     @classmethod
     def get_by_cpf(cls, database_session: SESSION, cpf: str) -> Optional['Cliente']:
