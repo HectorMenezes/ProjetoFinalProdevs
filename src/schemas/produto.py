@@ -1,3 +1,7 @@
+"""
+O modulo contém os Schemas do produto
+"""
+
 from pydantic import BaseModel, constr, conint, confloat
 
 

@@ -1,4 +1,4 @@
-from pydantic import BaseModel, constr, conint, confloat, Field
+from pydantic import BaseModel, Field
 
 
 class Operacao(BaseModel):
