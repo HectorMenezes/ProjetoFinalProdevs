@@ -15,6 +15,7 @@ pydantic = {extras = ["email"], version = "*"}
 psycopg2-binary = "*"
 aiohttp = "*"
 requests = "*"
+pylint = "*"
 
 [requires]
 python_version = "3.8"

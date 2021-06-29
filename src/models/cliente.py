@@ -1,3 +1,6 @@
+"""
+O modulo faz o modelo de cliente da base de dados.
+"""
 from typing import Optional
 
 from sqlalchemy import Column, String, DateTime
@@ -8,6 +11,9 @@ from src.services.database import BaseModel, SESSION
 
 
 class Cliente(BaseModel, BasicCrud):
+    """
+    A classe implementa as restrições de dados do cliente.
+    """
     __tablename__ = 'cliente'
     cpf = Column(String(11), primary_key=True, autoincrement=False)
     nome = Column(String(100), nullable=False)
@@ -19,4 +25,10 @@ class Cliente(BaseModel, BasicCrud):
 
     @classmethod
     def get_by_cpf(cls, database_session: SESSION, cpf: str) -> Optional['Cliente']:
+        """
+        É feita a pesquisa dos cliente com base no CPF passado.
+        :param database_session: conexão do banco de dados.
+        :param cpf: CPF do cliente a ser pesquisado.
+        :return: retorna o primeiro (e único) cliente com o CPF.
+        """
         return database_session.query(cls).filter_by(cpf=cpf).first()

@@ -1,3 +1,6 @@
+"""
+Esse modulo incluí todas as rotas do sistema e faz as migrações.
+"""
 from fastapi import FastAPI
 
 from src.res.cliente import router_cliente
@@ -14,6 +17,10 @@ APP.include_router(router=router_produto, tags=['Produtos'])
 
 @APP.on_event('startup')
 def start_up():
+    """
+    Faz as migrações ao iniciar o APP.
+    :return: Nada
+    """
     try:
         ...
         # run_migration(MigrationType.UPGRADE, 'head')
