@@ -22,7 +22,6 @@ def start_up():
     :return: Nada
     """
     try:
-        ...
-        # run_migration(MigrationType.UPGRADE, 'head')
+        run_migration(MigrationType.UPGRADE, 'head')
     except Exception as error:
         print(error)

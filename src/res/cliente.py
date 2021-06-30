@@ -6,6 +6,7 @@ from starlette import status
 from starlette.responses import JSONResponse
 
 from src.models.cliente import Cliente as ModelCliente
+from src.models.operacao import Operacao as ModelOperacao
 from src.schemas.cliente import ClienteSchema, ClienteUpdate, ClienteSchemaResponse
 from src.services.database import get_con, SESSION
 
@@ -105,11 +106,19 @@ def excluir_cliente(cpf: str, database_session: SESSION = Depends(get_con)):
     Erro interno caso problema no banco de dados. Sucesso caso
     tudo de certo.
     """
+
+    # Confere se há algum cliente
     cliente = ModelCliente.get_by_cpf(database_session=database_session, cpf=cpf)
     if not cliente:
         return JSONResponse(status_code=status.HTTP_404_NOT_FOUND,
                             content=dict(status='REQUISICAO_INVALIDA',
                                          descricao='Cliente não encontrado'))
+
+    # Confere se o cliente não fez nenhuma compra.
+    if ModelOperacao.get_all_compras_cliente(database_session=database_session, cpf=cpf):
+        return JSONResponse(status_code=status.HTTP_406_NOT_ACCEPTABLE,
+                            content=dict(status='REQUISICAO_INVALIDA',
+                                         descricao='Cliente já fez compra, logo não pode ser excluído'))
 
     status_cliente = cliente.delete(database_session=database_session)
 
