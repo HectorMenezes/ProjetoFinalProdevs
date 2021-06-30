@@ -132,8 +132,9 @@ async def cancela_compra_de_produto(cpf: str, pedido: str, item: str):
     # 32694352740
     #
     async with aiohttp.ClientSession(headers={'x-api-key': external_api_key}) as session:
-        async with session.delete(EXTERNAL_API_URL + 'compras/' +
-                                  f'{pedido}/' + f'{item}') as response:
+        url = EXTERNAL_API_URL + f'{cpf}/{pedido}/{item}'
+        print(url)
+        async with session.delete(url) as response:
             j = await response.json()
             print(j)
             return j

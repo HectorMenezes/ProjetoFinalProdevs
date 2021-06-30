@@ -10,7 +10,6 @@ verify_ssl = true
 [dev-packages]
 
 [packages]
-<<<<<<< HEAD
 fastapi = "==0.65.2"
 python-decouple = "==3.4"
 alembic = "==1.6.5"
@@ -42,7 +41,7 @@ starlette = "==0.14.2"
 typing-extensions = "==3.10.0.0"
 urllib3 = "==1.26.5"
 yarl = "==1.6.3"
-
+pylint = "*"
 
 [requires]
 python_version = "3.8"

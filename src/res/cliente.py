@@ -1,3 +1,6 @@
+"""
+O modulo implementa a rota de cliente.
+"""
 from fastapi import APIRouter, Depends
 from starlette import status
 from starlette.responses import JSONResponse
