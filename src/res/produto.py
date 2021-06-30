@@ -2,6 +2,7 @@
 O modulo implementa a rota do produto.
 """
 from fastapi import APIRouter
+from starlette import status
 import aiohttp
 from src.settings import EXTERNAL_API_URL, external_api_key
 
@@ -9,7 +10,7 @@ from src.settings import EXTERNAL_API_URL, external_api_key
 router_produto = APIRouter()
 
 
-@router_produto.get('/produtos')
+@router_produto.get('/produtos', status_code=status.HTTP_200_OK)
 async def get_todos_produtos():
     """
     Acessa a API externa por meio da chave declarada do .env.

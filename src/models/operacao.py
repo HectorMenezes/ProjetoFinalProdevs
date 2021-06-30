@@ -12,7 +12,7 @@ from src.services.database import BaseModel, SESSION
 
 class Operacao(BaseModel, BasicCrud):
     """
-    A classe tem os elementos base de uma operação. Vale ressaltar que caso Tipo = 0 -> Compra
+    A classe tem os elementos base de uma operação. Vale ressaltar que caso Tipo = False -> Compra
     """
     __tablename__ = 'operacao'
     id = Column(Integer, primary_key=True, autoincrement=True)
@@ -34,6 +34,19 @@ class Operacao(BaseModel, BasicCrud):
         :return: primeiro pedido encontrado.
         """
         return database_session.query(cls).filter_by(cpf=cpf, pedido=pedido).first()
+
+    @classmethod
+    def get_by_cliente_pedido_e_item(cls, database_session: SESSION, cpf: str,
+                                     pedido: str, item: str) -> Optional['Operacao']:
+        """
+        Retorna um pedido específico de um cliente.
+        :param database_session: Sessão do banco de dados.
+        :param cpf: CPF do cliente.
+        :param pedido: Pedido a ser pesquisado.
+        :param item: Item a ser pesquisado
+        :return: primeiro pedido encontrado.
+        """
+        return database_session.query(cls).filter_by(cpf=cpf, pedido=pedido, codigo_produto=item).first()
 
     @classmethod
     def get_all_compras_cliente(cls, database_session: SESSION, cpf: str) -> List['Operacao']:
