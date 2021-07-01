@@ -153,7 +153,7 @@ async def cancela_compra_de_produto(cpf: str, pedido: str, item: str,
                 return JSONResponse(status_code=status.HTTP_404_NOT_FOUND,
                                     content=dict(
                                         status='REQUISICAO_INVALIDA',
-                                        descricao=f'Item do pedido não encontrado localmente'
+                                        descricao='Item do pedido não encontrado localmente'
                                     ))
             model_exclusao = ModelOperacao(cpf=cpf,
                                            pedido=pedido,

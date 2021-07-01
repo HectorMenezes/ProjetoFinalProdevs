@@ -2,11 +2,13 @@
 Esse modulo incluí todas as rotas do sistema e faz as migrações.
 """
 from fastapi import FastAPI
+from sqlalchemy.exc import SQLAlchemyError
 
 from src.res.cliente import router_cliente
 from src.res.compras import router_compras
 from src.res.produto import router_produto
 from src.services.database import run_migration, MigrationType
+
 
 APP = FastAPI(title="ProjetoFinalProdevs", version="0.0.1")
 
@@ -23,5 +25,5 @@ def start_up():
     """
     try:
         run_migration(MigrationType.UPGRADE, 'head')
-    except Exception as error:
+    except SQLAlchemyError as error:
         print(error)
